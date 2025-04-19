@@ -1,26 +1,46 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-1: #001d3d;
+  --color-2: #ffc300;
+  --color-3: white
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@theme {
+  --color-1: #001d3d;
+  --color-2: #ffc300;
+  --color-3: white;
+}
+h1 {
+  font-size: 2.5rem;
+  font-weight: 500;
+}
+p,label {
+  font-size: 1.125rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.my-input {
+  border: 2px solid var(--color-1);
+  border-radius: 4px;
+  outline: none;
+
+}
+.button-1 {
+  padding: 10px 20px;
+  background-color: var(--color-2);
+  border-radius: 999px;
+  color: var(--color-1);
+  border: 1px solid var(--color-2);
+  transition-duration: 250ms;
+  cursor: pointer;
+}
+.button-1:hover {
+  padding: 10px 20px;
+  color: var(--color-2);
+  background-color: var(--color-3);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--color-1);
   font-family: Arial, Helvetica, sans-serif;
 }
