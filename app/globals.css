@@ -3,17 +3,20 @@
 :root {
   --color-1: #001d3d;
   --color-2: #ffc300;
-  --color-3: white
+  --color-3: #fff;
+  --shadow: 5px 5px 16px 0px rgba(0, 0, 0, 0.25);
 }
 
 @theme {
   --color-1: #001d3d;
   --color-2: #ffc300;
-  --color-3: white;
+  --color-3: #fff;
+  --shadow: 5px 5px 16px 0px rgba(0, 0, 0, 0.25);
 }
 h1 {
   font-size: 2.5rem;
   font-weight: 500;
+  color: var(--color-3);
 }
 p,label {
   font-size: 1.125rem;
@@ -24,6 +27,14 @@ p,label {
   border-radius: 4px;
   outline: none;
 
+}
+.input-div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.input-div input,.input-div label {
+  width: 100%;
 }
 .button-1 {
   padding: 10px 20px;
@@ -43,4 +54,16 @@ p,label {
 body {
   background: var(--color-1);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.books-div {
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background-color: white;
+  width: 100%;
+  max-width: 600px;
 }
