@@ -1,16 +1,18 @@
 "use client"
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 export default function Manage({ books }) {
  
     const input = useRef()
+
+    const [list, setList] = useState(books)
 
     const addBook = async (event) => {
         event.preventDefault()
 
         const value = input.current.value
 
-        await fetch("/api/addBook", {
+        const res = await fetch("/api/addBook", {
             credentials: "include",
             method: "POST",
             body: JSON.stringify({book: value}),
@@ -18,18 +20,22 @@ export default function Manage({ books }) {
                 "Content-type": "application/json"
             }
         })
+        if (res.ok) {
+            const newBooks = await res.json()
+        
+            setList(newBooks)
+            input.current.value = ""
+        }
 
        
     }
     
-  
-
     return (
       <div className="w-full h-screen flex flex-col justify-center gap-8 items-center">
         <h1>Twoje książki</h1>
         <div className="flex w-full flex-col gap-6 items-center">
             
-            {books.map(book => (
+            {list.map(book => (
                 <div className="books-div">
                     <div className="flex justify-between gap-2">
                         <p className="text-2xl font-medium">{book.book}</p>

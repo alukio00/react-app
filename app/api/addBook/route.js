@@ -1,5 +1,6 @@
 import pool from "../../config/mysql.js"
 import { getToken } from "next-auth/jwt"
+import getBooks from "../../functions/getBooks.js"
 
 const addBook = async (req) => {
     try {
@@ -17,8 +18,9 @@ const addBook = async (req) => {
         
         await pool.query("INSERT INTO books (book, user) VALUES (?, ?)", [book, user])
 
+        const newBooks = await getBooks(user)
 
-        return new Response(true, {status: 200})
+        return new Response(JSON.stringify(newBooks), {status: 200})
         
     } catch (error) {
 
