@@ -4,14 +4,14 @@
   --color-1: #001d3d;
   --color-2: #ffc300;
   --color-3: #fff;
-  --shadow: 5px 5px 16px 0px rgba(0, 0, 0, 0.25);
+  --shadow: 5px 5px 16px 0px rgba(0, 0, 0, 0.5);
+  --shadow-2: 5px 5px 16px 0px rgba(0, 0, 0, 0.3);
 }
 
 @theme {
   --color-1: #001d3d;
   --color-2: #ffc300;
   --color-3: #fff;
-  --shadow: 5px 5px 16px 0px rgba(0, 0, 0, 0.25);
 }
 h1 {
   font-size: 2.5rem;
@@ -35,6 +35,9 @@ p,label {
   flex-direction: column;
   gap: 4px;
 }
+.shadow-div {
+  box-shadow: var(--shadow);
+}
 .input-div input,.input-div label {
   width: 100%;
 }
@@ -56,6 +59,7 @@ p,label {
 body {
   background: var(--color-1);
   font-family: Arial, Helvetica, sans-serif;
+  padding: 20px;
 }
 
 .books-div {
@@ -68,4 +72,10 @@ body {
   background-color: white;
   width: 100%;
   max-width: 600px;
+}
+.page-content {
+  white-space: pre-wrap; /* or pre-line */
+}
+.background-opacity {
+  background-color: rgba(0, 0, 0, 0.5);
 }

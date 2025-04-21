@@ -9,7 +9,7 @@ export default async function Book({ params }) {
     const session = await getServerSession()
    
     const user = session?.user?.email
-
+    
     const info = await getPages(user, id)
     
 

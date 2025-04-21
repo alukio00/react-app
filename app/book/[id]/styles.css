@@ -1,0 +1,8 @@
+
+.navigation-div {
+    background-color: white;
+    color:  var(--color-1);
+   
+    border-radius: 8px;
+    box-shadow: var(--shadow-2);
+}
