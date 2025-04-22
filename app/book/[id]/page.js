@@ -11,7 +11,6 @@ export default async function Book({ params }) {
     const user = session?.user?.email
     
     const info = await getPages(user, id)
-    
 
     return (
         <div className="flex flex-col my-10 w-full gap-8 items-center justify-center">
@@ -20,7 +19,7 @@ export default async function Book({ params }) {
             <Upload book={id} />
 
 
-            <Pages pages={info.pages}/>
+            <Pages  pages={info.pages}/>
             
         </div>
     )

@@ -30,9 +30,11 @@ export const Zoom = forwardRef(({pages}, ref) => {
             setZoom(true)
         }
     }))
-
+    if (!isZoom) {
+        return (<></>)
+    }
         return (
-            <div className={isZoom ? "block" : "hidden"}>
+            <div>
         
                 <HiXMark onClick={() => setZoom(false)} className="w-14 fixed top-6 right-6 h-14 cursor-pointer shadow-div text-1 bg-white p-2 rounded-full z-30" />
                   

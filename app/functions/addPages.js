@@ -27,19 +27,9 @@ export default async function addPages(pages, book) {
 
             const lines = response.Blocks.filter(el => el.BlockType == "LINE" && el.Confidence > 90)
 
-            const title = lines.find(line => {
-              const box = line.Geometry?.BoundingBox;
-            
-              return (
-                box?.Top < 0.5 &&         // na górze strony
-                box?.Height > 0.03 &&     // większa czcionka
-                line.Text.length < 60     // nie za długa
-              );
-            });
-            const pageTitle = title ? title.Text : null
+        
 
-
-            const text = lines.map(el => el.Text).filter(el => el.length > 7 && el != pageTitle).join("\n")
+            const text = lines.map(el => el.Text).filter(el => el.length > 7).join("\n")
 
 
             const pageNumberLine = lines.find(line => {
@@ -48,17 +38,17 @@ export default async function addPages(pages, book) {
 
               const isBottomOrTop = box?.Top > 0.85 || box?.Top < 0.15;
 
-              const isNumber = /^\d+$/.test(line.Text.trim());
+              const isNumberEnd = /\d+$/.test(line.Text.trim());
+              const isNumberStart = /^\d+/.test(line.Text.trim());
 
-
-              return isBottomOrTop && isNumber;
+              return isBottomOrTop && (isNumberEnd || isNumberStart);
             });
             
-            const pageNumber = pageNumberLine ? parseInt(pageNumberLine.Text.trim()) : null;
+            const pageNumber = pageNumberLine ? parseInt(pageNumberLine.Text.trim().replace(/\D/g, "")) : null;
 
           
 
-            await pool.query("INSERT INTO pages (book, title, content, page) VALUES (?, ?, ?, ?)", [book, pageTitle, text, pageNumber])
+            await pool.query("INSERT INTO pages (book, content, page) VALUES (?, ?, ?)", [book, text, pageNumber])
             
             console.log("Dodano strone - ", pageNumber)
           }

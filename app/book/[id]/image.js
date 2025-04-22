@@ -12,14 +12,18 @@ export function Upload({book}) {
   const maxNumber = 100;
 
   const onChange = (imageList, addUpdateIndex) => {
-    console.log(imageList)
+  
     setImages(imageList);
   };
 
   const addAll = async () => {
     const res = await addPages(images, book)
 
-    console.log(res)
+    if (res) {
+      location.reload()
+    } else {
+      alert("Error")
+    }
 
   }
 
@@ -59,9 +63,9 @@ export function Upload({book}) {
                 </div>
             </div>
            
-            <div className='flex flex-wrap items-start justify-between w-full gap-6'>
+            <div className='grid-cols-3 grid items-start justify-between w-full gap-6'>
                 {imageList.map((image, index) => (
-                <div key={index} className="flex flex-col w-full justify-between max-w-43 shadow-div bg-white rounded-xl">
+                <div key={index} className="flex flex-col w-full justify-between shadow-div bg-white rounded-xl">
                     <img className='w-full object-cover rounded-t-xl' src={image['data_url']} alt="" />
                     <div className="flex justify-between p-4 gap-2">
                         <button className='text-blue-600 cursor-pointer underline' onClick={() => onImageUpdate(index)}>Zaaktualizuj</button>

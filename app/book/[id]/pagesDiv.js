@@ -5,6 +5,8 @@ import { useState, useRef } from 'react';
 import { useSession } from "next-auth/react";
 import { Zoom } from './zoom';
 
+
+
 export function Pages({pages: allPages}) {
 
   const [pages, setPages] = useState(allPages);
@@ -23,9 +25,12 @@ export function Pages({pages: allPages}) {
   
   const childRef = useRef()
 
+  if (!pages.length) {
+    return (<></>)
+}
+
   return (
     <>
-
         <h2 className='text-center text-4xl my-8 text-white'>Strony</h2>
 
         <div className='flex flex-wrap w-full justify-center max-w-300 gap-6'>

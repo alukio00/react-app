@@ -35,16 +35,6 @@ export default function Manage({ books }) {
         <h1>Twoje książki</h1>
         <div className="flex w-full flex-col gap-6 items-center">
             
-            {list.map(book => (
-                <div className="books-div">
-                    <div className="flex justify-between gap-2">
-                        <p className="text-2xl font-medium">{book.book}</p>
-                        <a href={"/book/" + book.id} className="underline text-blue-600">Pokaż książke</a>
-                    </div>
-                </div>
-                )
-            )}
-
             <form className="books-div" onSubmit={addBook}>
                 <div className="input-div">
                     <label htmlFor="name">Tytuł książki</label>
@@ -53,6 +43,16 @@ export default function Manage({ books }) {
             
                 <button type="submit" className="button-1">Dodaj książkę</button>
             </form>
+
+            {list.map(book => (
+                <div key={book.id} className="books-div">
+                    <div className="flex justify-between gap-2">
+                        <p className="text-2xl font-medium">{book.book}</p>
+                        <a href={"/book/" + book.id} className="underline text-blue-600">Pokaż książke</a>
+                    </div>
+                </div>
+                )
+            )}
 
         </div>
       </div>
